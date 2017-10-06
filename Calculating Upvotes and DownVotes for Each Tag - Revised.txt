@@ -1,0 +1,20 @@
+----------------Calculating UpVotes and DownVotes For each Tag-------------------
+
+SELECT  TagName, Sum(CASE WHEN VoteTypeId = 2 THEN 1 ELSE 0 END) as UpVotes, Sum(CASE WHEN VoteTypeId = 3 THEN 1 ELSE 0 END) as DownVotes 
+FROM  Votes Inner Join Posts On Votes.Postid = Posts.id 
+            Inner Join PostTags On Posts.Parentid = PostTags.Postid
+            Inner Join Tags On PostTags.Tagid = Tags.id
+
+where  VoteTypeId in (2,3)
+GROUP BY TagName 
+ORDER BY UpVotes DESC
+
+
+
+
+
+
+
+
+
+
